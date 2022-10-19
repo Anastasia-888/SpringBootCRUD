@@ -1,7 +1,7 @@
 package web.springbootcrud.service;
 
 import org.springframework.stereotype.Service;
-import web.springbootcrud.dao.UserRepository;
+import web.springbootcrud.repository.UserRepository;
 import web.springbootcrud.model.User;
 
 import java.util.List;
