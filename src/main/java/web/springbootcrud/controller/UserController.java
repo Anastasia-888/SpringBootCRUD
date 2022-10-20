@@ -33,12 +33,6 @@ public class UserController {
         return "redirect:/users";
     }
 
-    @GetMapping("/{id}")
-    public String getUser(@PathVariable(value = "id") int id, Model model){
-        model.addAttribute(userService.getUserById(id));
-        return "user";
-    }
-
     @GetMapping("/{id}/edit")
     public String editUser(@PathVariable(value = "id") int id, Model model){
         model.addAttribute("user", userService.getUserById(id));
