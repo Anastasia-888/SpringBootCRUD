@@ -1,41 +1,46 @@
 package web.springbootcrud.service;
 
 import org.springframework.stereotype.Service;
-import web.springbootcrud.repository.UserRepository;
+import org.springframework.transaction.annotation.Transactional;
+import web.springbootcrud.dao.UserDao;
 import web.springbootcrud.model.User;
 
 import java.util.List;
 
 @Service
-public class UserServiceImpl implements UserService{
-    private final UserRepository userRepository;
+public class UserServiceImpl implements UserService {
+    private final UserDao userDao;
 
-    public UserServiceImpl(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public UserServiceImpl(UserDao userDao) {
+        this.userDao = userDao;
     }
 
     @Override
     public List<User> getUsers() {
-        return userRepository.findAll();
+        return userDao.getUsers();
     }
 
     @Override
+    @Transactional
     public void add(User user) {
-        userRepository.save(user);
+        userDao.add(user);
     }
 
     @Override
+    @Transactional
     public User getUserById(int id) {
-        return userRepository.findById(id).orElse(null);
+        return userDao.getUserById(id);
     }
 
     @Override
-    public void update(User newUser) {
-        userRepository.save(newUser);
+    @Transactional
+    public void update(User newUser, int id) {
+        userDao.update(newUser, id);
     }
 
     @Override
+    @Transactional
     public void delete(User user) {
-        userRepository.delete(user);
+        userDao.delete(user);
     }
 }
